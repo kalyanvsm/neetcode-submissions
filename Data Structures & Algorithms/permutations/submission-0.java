@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> ans;
+    public List<Integer> temp;
+    public void backtrack(int[] nums){
+        if(temp.size() == nums.length){
+            ans.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            if(temp.contains(nums[i])) continue;
+
+            temp.add(nums[i]);
+            backtrack(nums);
+            temp.remove(temp.size() - 1);
+        }
+
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        ans = new ArrayList<>();
+        temp = new ArrayList<>();
+        backtrack(nums);
+        return ans;
+    }
+}
